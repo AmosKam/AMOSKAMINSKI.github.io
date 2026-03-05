@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amos-kaminski.com/sitemap.xml
