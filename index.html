@@ -5,63 +5,266 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amos Kaminski</title>
   <meta name="description" content="Personal homepage of Amos Kaminski." />
+
+  <!-- Optional: nicer typography (works even if blocked) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 48px 20px; }
-    header { display: flex; gap: 18px; align-items: center; }
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --link: rgba(255,255,255,.92);
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(93,123,255,.35), transparent 60%),
+        radial-gradient(900px 600px at 80% 0%, rgba(255,140,92,.22), transparent 55%),
+        radial-gradient(900px 600px at 60% 90%, rgba(70,230,180,.14), transparent 60%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 56px 20px 72px; }
+
+    /* Top header card */
+    .top{
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .top-left{ display:flex; gap:16px; align-items:center; min-width: 0; }
+
     .avatar{
-  width: 72px;
-  height: 72px;
-  border-radius: 999px;
-  object-fit: cover;        /* key: prevents stretching */
-  object-position: 50% 35%; /* optional: move crop up/down */
-  display: block;
-}
-    h1 { margin: 0; font-size: 34px; }
-    .sub { margin: 6px 0 0; color: #555; }
-    nav a { margin-right: 14px; text-decoration: none; }
-    section { margin-top: 28px; }
-    .card { border: 1px solid #eee; border-radius: 14px; padding: 14px 16px; margin-top: 12px; }
-    footer { margin-top: 46px; color: #777; font-size: 14px; }
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      object-fit: cover;
+      object-position: 50% 35%;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+      flex: 0 0 auto;
+    }
+
+    h1{ margin:0; font-size: 30px; letter-spacing: -0.02em; }
+    .sub{ margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+    nav{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a{
+      text-decoration: none;
+      color: var(--link);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,.05);
+    }
+    nav a:hover{
+      border-color: var(--border);
+      background: rgba(255,255,255,.08);
+    }
+
+    section{ margin-top: 28px; scroll-margin-top: 18px; }
+    h2{
+      font-size: 16px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.80);
+      margin: 0 0 12px;
+    }
+
+    /* About layout */
+    .about{
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 22px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .about p{ margin: 0 0 12px; color: rgba(255,255,255,.88); }
+    .about p:last-child{ margin-bottom: 0; }
+
+    /* Rectangular photo like the example (optional) */
+    .profile{
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display:block;
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Papers cards */
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .card{
+      padding: 16px 16px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .card strong{ font-size: 16px; }
+    .card p{ margin: 8px 0 0; color: rgba(255,255,255,.82); }
+    .meta{
+      margin-top: 10px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .pill{
+      font-size: 12px;
+      color: rgba(255,255,255,.78);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+    }
+    a{ color: rgba(180,210,255,.95); }
+    a:hover{ color: white; }
+
+    .contact{
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .contact ul{ margin: 0; padding-left: 18px; color: rgba(255,255,255,.86); }
+
+    footer{
+      margin-top: 40px;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px){
+      .top{ flex-direction: column; align-items: stretch; }
+      nav{ justify-content: flex-start; }
+      .about{ grid-template-columns: 1fr; }
+      .profile{ max-width: 420px; }
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <header>
-      <img class="avatar" src="avatar.jpg" alt="Photo of Amos Kaminski" />
-      <div>
-        <h1>Amos Kaminski</h1>
-        <p class="sub">PhD Student — algebraic topology, condesed mathematics &amp; algebraic geometry</p>
-        <nav>
-          <a href="#about">About</a>
-          <a href="#papers">Papers</a>
-          <a href="#contact">Contact</a>
-        </nav>
+
+    <header class="top">
+      <div class="top-left">
+        <img class="avatar" src="avatar.jpg" alt="Photo of Amos Kaminski" />
+        <div style="min-width:0">
+          <h1>Amos Kaminski</h1>
+          <p class="sub">PhD student — algebraic topology, condensed mathematics &amp; algebraic geometry</p>
+        </div>
       </div>
+
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#papers">Papers</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
     <section id="about">
       <h2>About</h2>
-      <p>
-        I am a PhD student at the Weizmann Institute of Science under the supervision of Shachar Carmeli. My areas of interest are algebraic topology, algebraic geometry, and condensed mathematics. 
+      <div class="about">
+        <div>
+          <p>
+            I am a PhD student at the Weizmann Institute of Science under the supervision of Shachar Carmeli.
+            My interests include algebraic topology, algebraic geometry, and condensed/pyknotic mathematics.
+          </p>
+          <p>
+            Recently, I proved Clausen’s Conjecture 5.17 on the local light–profinite structure of smooth
+            <em>p</em>-adic analytic Artin stacks.
+          </p>
+        </div>
+
+        <!-- Optional: use a rectangular photo like the example.
+             If you prefer only the circular avatar, delete this <img>. -->
+        <img class="profile" src="avatar.jpg" alt="Amos Kaminski" />
+      </div>
+    </section>
 
     <section id="papers">
       <h2>Papers</h2>
-      <div class="card">
-        <strong>Local structure of smooth <em>p</em>-adic analytic Artin stacks</strong> — Resolved Clausen's Conjecture&nbsp;5.17 by proving that smooth p-adic analytic Artin stacks have a local light–profinite structure through generalizations of van&nbsp;Dantzig's theorem and by constructing closed skeletons. This result shows that such stacks are <em>!-good</em>.
-        <div><a href="https://arxiv.org/abs/2603.00733">arXiv:2603.00733</a></div>
-      </div>
-      <div class="card">
-        <strong>Derived Stone Embedding</strong> — Extended the classical characterization of the Stone embedding using ∞topoi to partially characterize the derived image of the pro-category of π-finite spaces in pyknotic spaces, thereby extending classical descriptions of profinite spaces to the derived setting.
-        <div><a href="https://arxiv.org/abs/2410.24077">arXiv:2410.24077</a></div>
+      <div class="grid">
+
+        <article class="card">
+          <strong>Local structure of smooth <em>p</em>-adic analytic Artin stacks</strong>
+          <p>
+            Resolved Clausen’s Conjecture&nbsp;5.17 by proving a local light–profinite structure for smooth
+            <em>p</em>-adic analytic Artin stacks, via a van&nbsp;Dantzig-type theorem for groupoids and a
+            closed-skeleton reduction. In particular, smooth <em>p</em>-adic analytic Artin stacks are <em>!-good</em>.
+          </p>
+          <div class="meta">
+            <span class="pill">math.AT · math.AG</span>
+            <a href="https://arxiv.org/abs/2603.00733">arXiv:2603.00733</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <strong>Derived Stone Embedding</strong>
+          <p>
+            Uses ∞-topoi to partially characterize the essential image of the derived Stone embedding
+            of the pro-category of π-finite spaces into pyknotic spaces, extending the classical Stone embedding
+            to a derived setting.
+          </p>
+          <div class="meta">
+            <span class="pill">math.AT · math.CT</span>
+            <a href="https://arxiv.org/abs/2410.24077">arXiv:2410.24077</a>
+          </div>
+        </article>
+
       </div>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
-      <ul>
-        <li>Email: <a href="mailto:amos.kaminski@weizmann.ac.il">amos.kaminski@weizmann.ac.il</a></li>
-      </ul>
+      <div class="contact">
+        <ul>
+          <li>Email: <a href="mailto:amos.kaminski@weizmann.ac.il">amos.kaminski@weizmann.ac.il</a></li>
+        </ul>
+      </div>
     </section>
 
     <footer>© <span id="y"></span> Amos Kaminski</footer>
